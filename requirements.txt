@@ -1,0 +1,8 @@
+# File to indicate which python library to install when using "pip install -r requirements.txt"
+# The specific version of each library is specified to force version and have same environnement even in next years.
+
+ipykernel==6.29.5 # Allow usage of jupyter notebook
+matplotlib==3.10.0 
+pandas==2.1.4 
+scikit-learn==1.6.1
+seaborn==0.13.2

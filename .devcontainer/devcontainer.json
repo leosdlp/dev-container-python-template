@@ -1,0 +1,22 @@
+{
+    "name": "Name-for-template", //name of the app, not really usefull for our case
+
+    // more information here: https://containers.dev/implementors/json_reference/#image-specific
+    "build": {
+      "dockerfile": "Dockerfile", // indicate le path of the dockerfile relative to the .devcontainer folder
+      "context": ".." // indicate where the dockerfile should run. By default it is in the .devcontainer folder so ".." indicate the parent folder i.e the folder where we can find the "requirements.txt" file
+    },
+
+    // allow other tools to be configured to works with devcontainer
+    "customizations": {
+
+      // specific config for vs code
+      "vscode": {
+        // add python and jupyter extension to be able to use jupyter notebook in the devcontainer with python kernel detection
+        "extensions": [
+            "ms-toolsai.jupyter",
+            "ms-python.python"
+        ]
+      }
+    }
+  }
