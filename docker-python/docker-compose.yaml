@@ -1,0 +1,48 @@
+services:
+  python:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: cours_data_python
+    restart: unless-stopped
+    volumes:
+      - ./app:/usr/src/app
+    networks:
+      - app_network
+
+  mysql:
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    container_name: cours_data_mysql
+    restart: unless-stopped 
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: cours_data
+    volumes:
+      - mysql:/var/lib/mysql
+    networks:
+      - app_network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.0
+    container_name: cours_data_phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: root
+      MYSQL_DATABASE: cours_data
+    networks:
+      - app_network
+
+volumes:
+  mysql:
+
+networks:
+  app_network:
