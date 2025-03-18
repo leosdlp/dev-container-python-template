@@ -57,9 +57,8 @@ if __name__ == '__main__':
                 if price_tag:
                     match = re.match(r'([\d,.]+)\s*([\W\D]+)', price_tag.text.strip())
                     if match:
-                        price_str = match.group(1).replace('.', '').replace(',', '.')
                         try:
-                            price = float(price_str)
+                            price = float(match.group(1))
                         except ValueError:
                             price = "N/A"
 
